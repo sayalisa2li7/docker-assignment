@@ -1,0 +1,16 @@
+filebeat.inputs:
+- type: log
+  paths:
+    - /var/log/nginx/*.log  # Adjust the path accordingly
+fields:
+    log_type: nginx
+    fields_under_root: true
+
+output.elasticsearch:
+  hosts: ["elasticsearch:9200"]
+
+setup.template.name: "nginx_logs"
+setup.template.pattern: "nginx_logs-*"
+
+setup.kibana:
+  host: "kibana:5601"
